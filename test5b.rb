@@ -3,6 +3,11 @@ module Calculate_bill
   def bill(pricing_table)
     cart = {}
     @items.each { |item| cart[item] = @items.count(item) }
+    
+    if @items.any? {|item| !pricing_table.include?item}
+      puts "Invalid item"
+      return
+    end
 
     total_price = 0
     savings = 0
